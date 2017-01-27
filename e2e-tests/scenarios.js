@@ -5,38 +5,17 @@
 describe('my app', function() {
 
 
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toMatch("/view1");
-  });
+// Element locators
+var pokemons = element.all(by.repeater('pokedex').column('pokemon.id'));
+
+it('should sort pokedex by id in !sortReverse order', function() {
+  expect(pokemons.get(0).getText()).toBe('001');
+  expect(pokemons.get(1).getText()).toBe('002');
+  expect(pokemons.get(2).getText()).toBe('003');
+  expect(pokemons.get(3).getText()).toBe('004');
+  expect(pokemons.get(4).getText()).toBe('005');
+});
 
 
-  describe('view1', function() {
 
-    beforeEach(function() {
-      browser.get('index.html#!/view1');
-    });
-
-
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 1/);
-    });
-
-  });
-
-
-  describe('view2', function() {
-
-    beforeEach(function() {
-      browser.get('index.html#!/view2');
-    });
-
-
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
-    });
-
-  });
 });

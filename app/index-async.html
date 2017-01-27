@@ -54,14 +54,119 @@ run:function(a){l.push(a);return this}};k&&m(k);return h})}})})(window)})(window
   <link rel="stylesheet" href="app.css">
 </head>
 <body ng-cloak>
-  <ul class="menu">
-    <li><a href="#!/view1">view1</a></li>
-    <li><a href="#!/view2">view2</a></li>
-  </ul>
-
-  <div ng-view></div>
-
-  <div>Angular seed app: v<span app-version></span></div>
-
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1>Pokedex</h1>
+      </div>
+      <div class="col-sm-4">
+        <form id="p-search">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <select name="searchFilter" ng-model="searchFilter" ng-change="searchPokemon = ''">
+                  <option value="ename">Name</option>
+                  <option value="id">ID</option>
+                </select>
+              </div>
+              <input type="text" class="form-control" placeholder="Search" ng-model="searchPokemon[searchFilter]">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="p-table table table-striped" ng-cloak>
+        <thead>
+          <tr>
+            <td><a ng-click="sortType = 'id'; sortReverse = !sortReverse"> ID <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-up"></span> <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-down"></span> </a></td>
+            <td><a ng-click="sortType = 'ename'; sortReverse = !sortReverse"> Name <span ng-show="sortType == 'ename' && !sortReverse" class="fa fa-caret-up"></span> <span ng-show="sortType == 'ename' && sortReverse" class="fa fa-caret-down"></span> </a></td>
+            <td>Theme</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="p-list" ng-click="showMe = !showMe" ng-repeat-start="pokemon in pokedex | orderBy:sortType:sortReverse | filter:searchPokemon" >
+            <td>{{ pokemon.id }}</td>
+            <td>{{ pokemon.ename }}</td>
+            <td><img ng-src="images/thm/{{pokemon.id + ((pokemon.flatName.length > 0) ? pokemon.flatName : pokemon.ename)}}.png"/></td>
+          </tr>
+          <tr ng-repeat-end>
+            <td class="p-details" colspan="4" ng-show="showMe"><div class="row">
+                <div class="col-sm-6 col-md-offset-1">
+                  <h4>Details</h4>
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Sprite:</td>
+                        <td><img ng-src="images/spr/{{pokemon.id + 'MS' }}.png"/></td>
+                      </tr>
+                      <tr>
+                        <td>Name:</td>
+                        <td>{{ pokemon.ename }}</td>
+                      </tr>
+                      <tr>
+                        <td>ID:</td>
+                        <td>{{ pokemon.id }}</td>
+                      </tr>
+                      <tr>
+                        <td>Type:</td>
+                        <td>{{ getEtypes(pokemon.type) }}<span ng-repeat="etype in eTypes track by $index">{{ etype }}{{ $last ? '' : ($index==eTypes.length-2) ? ' &amp; ' : ', ' }}</span></td>
+                      </tr>
+                      <tr>
+                        <td>Attack:</td>
+                        <td>{{ pokemon.base.Attack }}</td>
+                      </tr>
+                      <tr>
+                        <td>Defense:</td>
+                        <td>{{ pokemon.base.Defense }}</td>
+                      </tr>
+                      <tr>
+                        <td>HP:</td>
+                        <td>{{ pokemon.base.HP }}</td>
+                      </tr>
+                      <tr>
+                        <td>Sp.Atk:</td>
+                        <td>{{ pokemon['base']['Sp.Atk'] }}</td>
+                      </tr>
+                      <tr>
+                        <td>Sp.Def:</td>
+                        <td>{{ pokemon['base']['Sp.Def'] }}</td>
+                      </tr>
+                      <tr>
+                        <td>Speed:</td>
+                        <td>{{ pokemon.base.Speed }}</td>
+                      </tr>
+                      <tr ng-show="pokemon.skills.level_up">
+                        <td>Level Up Skills:</td>
+                        <td class="s-details">{{ getEskills(pokemon.skills.level_up) }}
+                          <div class="s-name" ng-repeat="eskill in eSkills track by $index"> <span ng-mouseover="getSkillDetails(eskill)" ng-mouseenter="hoverIn()" ng-mouseleave="hoverOut()">{{ eskill }}</span> </div>
+                          <div class="s-hover" ng-show="showDet">
+                            <div class="v-middle">
+                              <h5>Skill Details</h5>
+                              <p>Name: {{ skillDetails[0] }}<br>
+                                ID: {{ skillDetails[1] }}<br>
+                                Type: {{ getSkillTypes(skillDetails[2]) }}<br>
+                                Accuracy: {{ skillDetails[3] }}<br>
+                                PP: {{ skillDetails[4] }}<br>
+                                Power: {{ skillDetails[5] }}</p>
+                            </div>
+                          </div></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-sm-6 col-md-5 text-center"> <img ng-src="images/img/{{pokemon.id + ((pokemon.flatName.length > 0) ? pokemon.flatName : pokemon.ename)}}.png"/> </div>
+              </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 angular.module('myApp', [])
 .controller('mainController', function($scope, $http) {
 	$scope.sortType     = 'id'; 
-	$scope.searchFilter     = 'id'; 
+	$scope.searchFilter     = 'ename'; 
 	$scope.searchPokemon   = '';
 	$scope.sortReverse  = false;
 	$scope.showMe = false;

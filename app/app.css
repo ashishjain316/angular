@@ -26,14 +26,14 @@ header #p-search {
 #p-search .input-group-addon,
 #p-search .input-group .form-control {
 	border-radius: 0;
-	box-shadow: none;
 	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 #p-search select:focus,
 #p-search .form-control:focus {
     border-color: #ff4643;
-    box-shadow: none;
 	-webkit-box-shadow: none;
+    box-shadow: none;
 	outline: 0;
 }
 #p-search .input-group-addon {
@@ -72,11 +72,6 @@ header #p-search {
 .p-details table tr:last-child td {
 	border-bottom: 1px solid #ddd;
 }
-@media (max-width: 767px) {
-	.p-details table tr:last-child td {
-		border-bottom: 0;
-	}
-}
 .p-details table td:first-child {
 	width: 30%;
 }
@@ -89,7 +84,8 @@ header #p-search {
 	position: relative;
 	height: 220px;
 }
-.s-details div {
+.s-details .s-name,
+.s-details .s-hover {
     width: 50%;
 }
 .s-details .s-name {
@@ -109,9 +105,24 @@ header #p-search {
 	left: 50%;
 	height: 100%;
 	background-color: #f9f9f9;
-	padding: 8px;
+	padding: 8px 15px;
 	font-weight: normal;
 }
 .s-hover h5 {
 	margin-top: 3px;
+}
+
+.v-middle {
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+@media (max-width: 767px) {
+	.p-details table tr:last-child td {
+		border-bottom: 0;
+	}
+	.s-hover {
+		padding: 8px;
+	}
 }
