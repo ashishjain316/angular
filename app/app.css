@@ -1,25 +1,117 @@
 /* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+[ng-click], [data-ng-click], [x-ng-click] {
+	cursor: pointer;
 }
 
-.menu:before {
-  content: "[";
+body {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+img {
+	max-width: 100%;
 }
 
-.menu:after {
-  content: "]";
+header h1 {
+    line-height: 1;
+}
+header #p-search {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    line-height: 1;
+}
+#p-search .input-group-addon,
+#p-search .input-group .form-control {
+	border-radius: 0;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+#p-search select:focus,
+#p-search .form-control:focus {
+    border-color: #ff4643;
+    box-shadow: none;
+	-webkit-box-shadow: none;
+	outline: 0;
+}
+#p-search .input-group-addon {
+	color: #ff4643;
+	background-color: #f9f9f9;
+}
+#p-search select {
+	border: 0;
+}
+.p-table thead td a,
+.p-table thead td {
+	background-color: #ff4643 !important;
+	color: #fff !important;
+}
+.p-table thead td a:focus,
+.p-table thead td a:hover {
+	color: #eee !important;
+	text-decoration: none;
+}
+.p-list td,
+.p-table thead td {
+	text-align: center;
+	vertical-align: middle !important;
+}
+.p-list:hover td {
+	background-color: #eee !important;
 }
 
-.menu > li {
-  display: inline;
+.p-details {
+	padding-top: 30px !important;
+	padding-bottom: 30px !important;
+}
+.p-details table td {
+	vertical-align: middle !important;
+}
+.p-details table tr:last-child td {
+	border-bottom: 1px solid #ddd;
+}
+@media (max-width: 767px) {
+	.p-details table tr:last-child td {
+		border-bottom: 0;
+	}
+}
+.p-details table td:first-child {
+	width: 30%;
+}
+.p-details table td:last-child {
+	font-weight: bold;
+	width: 70%;
 }
 
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+.s-details {
+	position: relative;
+	height: 220px;
+}
+.s-details div {
+    width: 50%;
+}
+.s-details .s-name {
+    line-height: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.s-details div span:hover {
+	cursor: pointer;
+}
+.s-details .s-name span:hover {
+	color: #ff4643;
+}
+.s-hover {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	height: 100%;
+	background-color: #f9f9f9;
+	padding: 8px;
+	font-weight: normal;
+}
+.s-hover h5 {
+	margin-top: 3px;
 }
